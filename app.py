@@ -35,8 +35,8 @@ def multiply(number1, number2):
 @app.route('/sayntimes/<word>/<n>')
 def sayntimes(word, n):
     if n.isdigit():
-        words = " "
-        words += word
+        words = ""
+        words += word + " "
         for i in range(int(n)):
             if i < int(n) - 1:
                 words += word + " "
@@ -44,5 +44,16 @@ def sayntimes(word, n):
     else:
         return f'Invalid input. Please try again by entering a word and a number!'
 
+import random
+@app.route('/dicegame')
+def dicegame():
+    number = random.randint(1, 6)
+    if number == 6:
+        return f'You rolled a {number}. You won!'
+    else:
+        return f'You rolled a {number}. You lost!'
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+
